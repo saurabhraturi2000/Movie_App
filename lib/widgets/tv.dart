@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
-import 'package:movie_app/description.dart';
 import 'package:movie_app/utils/text.dart';
 
-class TrendingMovies extends StatelessWidget {
-  final List trending;
-  const TrendingMovies({Key? key, required this.trending}) : super(key: key);
+import 'package:movie_app/description.dart';
+
+class TV extends StatelessWidget {
+  final List tv;
+  const TV({Key? key, required this.tv}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -14,17 +15,17 @@ class TrendingMovies extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           const modified_text(
-            text: 'Trending',
+            text: 'TV Shows',
             size: 26,
             color: Colors.white,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Container(
-            height: 270,
+            height: 200,
             child: ListView.builder(
-                itemCount: trending.length,
+                itemCount: tv.length,
                 scrollDirection: Axis.horizontal,
                 itemBuilder: (context, index) {
                   return InkWell(
@@ -33,44 +34,45 @@ class TrendingMovies extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => Description(
-                                  name: trending[index]['title'] ??
-                                      trending[index]['name'],
-                                  description: trending[index]['overview'],
+                                  name: tv[index]['title'] ?? tv[index]['name'],
+                                  description: tv[index]['overview'],
                                   bannerurl: 'https://image.tmdb.org/t/p/w500' +
-                                      trending[index]['backdrop_path'],
+                                      tv[index]['backdrop_path'],
                                   posterurl: 'https://image.tmdb.org/t/p/w500' +
-                                      trending[index]['poster_path'],
-                                  vote: trending[index]['vote_average']
-                                      .toString(),
-                                  launch_date: trending[index]
-                                      ['release_date'])));
+                                      tv[index]['poster_path'],
+                                  vote: tv[index]['vote_average'].toString(),
+                                  launch_date: tv[index]['first_air_date'])));
                     },
                     child: Container(
-                      width: 140,
+                      padding: EdgeInsets.all(5),
+                      width: 250,
                       child: Column(children: [
                         Container(
-                          height: 200,
+                          width: 250,
+                          height: 140,
                           decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
                             image: DecorationImage(
-                              image: NetworkImage(
+                                image: NetworkImage(
                                   'https://image.tmdb.org/t/p/w500' +
-                                      trending[index]['poster_path']),
-                            ),
+                                      tv[index]['backdrop_path'],
+                                ),
+                                fit: BoxFit.cover),
                           ),
                         ),
+                        SizedBox(height: 10),
                         Container(
                           child: modified_text(
                             color: Colors.white,
                             size: 12,
-                            text: trending[index]['title'] ??
-                                trending[index]['name'],
+                            text: tv[index]['name'] ?? 'Loading',
                           ),
                         )
                       ]),
                     ),
                   );
                 }),
-          )
+          ),
         ],
       ),
     );

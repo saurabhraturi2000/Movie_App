@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:movie_app/utils/text.dart';
+import 'package:movie_app/widgets/toprated.dart';
+import 'package:movie_app/widgets/trending.dart';
+import 'package:movie_app/widgets/tv.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
 void main() => runApp(const MyApp());
@@ -12,10 +15,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: const Home(),
-      theme: ThemeData(
-        brightness: Brightness.dark,
-        primaryColor: Colors.green,
-      ),
+      theme: ThemeData(brightness: Brightness.dark, primaryColor: Colors.black),
     );
   }
 }
@@ -53,8 +53,8 @@ class _HomeState extends State<Home> {
 
     setState(() {
       trendingmovies = trendingresult['results'];
-      topratedmovies = topratedresult['result'];
-      tv = tvresult['result'];
+      topratedmovies = topratedresult['results'];
+      tv = tvresult['results'];
     });
   }
 
@@ -62,11 +62,18 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const modifiedText(
+        title: const modified_text(
           text: 'Flutter Movie App',
           color: Colors.white,
           size: 20,
         ),
+      ),
+      body: ListView(
+        children: [
+          TrendingMovies(trending: trendingmovies),
+          TopRated(toprated: topratedmovies),
+          TV(tv: tv)
+        ],
       ),
     );
   }
