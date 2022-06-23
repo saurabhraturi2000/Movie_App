@@ -14,7 +14,7 @@ class TV extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const modified_text(
+          const ModifiedText(
             text: 'TV Shows',
             size: 26,
             color: Colors.white,
@@ -23,6 +23,7 @@ class TV extends StatelessWidget {
             height: 10,
           ),
           Container(
+            padding: const EdgeInsets.all(0),
             height: 200,
             child: ListView.builder(
                 itemCount: tv.length,
@@ -31,20 +32,23 @@ class TV extends StatelessWidget {
                   return InkWell(
                     onTap: () {
                       Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => Description(
-                                  name: tv[index]['title'] ?? tv[index]['name'],
-                                  description: tv[index]['overview'],
-                                  bannerurl: 'https://image.tmdb.org/t/p/w500' +
-                                      tv[index]['backdrop_path'],
-                                  posterurl: 'https://image.tmdb.org/t/p/w500' +
-                                      tv[index]['poster_path'],
-                                  vote: tv[index]['vote_average'].toString(),
-                                  launch_date: tv[index]['first_air_date'])));
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Description(
+                            name: tv[index]['title'] ?? tv[index]['name'],
+                            description: tv[index]['overview'],
+                            bannerurl: 'https://image.tmdb.org/t/p/w500' +
+                                tv[index]['backdrop_path'],
+                            posterurl: 'https://image.tmdb.org/t/p/w500' +
+                                tv[index]['poster_path'],
+                            vote: tv[index]['vote_average'].toString(),
+                            launchDate: tv[index]['first_air_date'],
+                          ),
+                        ),
+                      );
                     },
                     child: Container(
-                      padding: EdgeInsets.all(5),
+                      padding: const EdgeInsets.all(5),
                       width: 250,
                       child: Column(children: [
                         Container(
@@ -60,13 +64,11 @@ class TV extends StatelessWidget {
                                 fit: BoxFit.cover),
                           ),
                         ),
-                        SizedBox(height: 10),
-                        Container(
-                          child: modified_text(
-                            color: Colors.white,
-                            size: 12,
-                            text: tv[index]['name'] ?? 'Loading',
-                          ),
+                        const SizedBox(height: 10),
+                        ModifiedText(
+                          color: Colors.white,
+                          size: 12,
+                          text: tv[index]['name'] ?? 'Loading',
                         )
                       ]),
                     ),
