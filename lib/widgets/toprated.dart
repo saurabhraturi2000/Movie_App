@@ -14,15 +14,16 @@ class TopRated extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const modified_text(
+          const ModifiedText(
             text: 'Top Rated Movies',
             size: 26,
             color: Colors.white,
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           ),
           Container(
+            padding: const EdgeInsets.all(0),
             height: 270,
             child: ListView.builder(
                 itemCount: toprated.length,
@@ -43,10 +44,11 @@ class TopRated extends StatelessWidget {
                                       toprated[index]['poster_path'],
                                   vote: toprated[index]['vote_average']
                                       .toString(),
-                                  launch_date: toprated[index]
+                                  launchDate: toprated[index]
                                       ['release_date'])));
                     },
                     child: Container(
+                      padding: const EdgeInsets.all(0),
                       width: 140,
                       child: Column(children: [
                         Container(
@@ -59,14 +61,10 @@ class TopRated extends StatelessWidget {
                             ),
                           ),
                         ),
-                        Container(
-                          child: modified_text(
-                            color: Colors.white,
-                            size: 12,
-                            text: toprated[index]['title'] != null
-                                ? toprated[index]['title']
-                                : 'Loading',
-                          ),
+                        ModifiedText(
+                          color: Colors.white,
+                          size: 12,
+                          text: toprated[index]['title'] ?? 'Loading',
                         )
                       ]),
                     ),
