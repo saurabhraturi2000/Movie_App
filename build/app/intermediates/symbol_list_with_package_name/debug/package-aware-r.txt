@@ -1,4 +1,4 @@
-com.example.movie_app
+com.example.flutter_application_2
 attr activityAction
 attr activityName
 attr alpha

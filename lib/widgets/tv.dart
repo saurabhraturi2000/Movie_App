@@ -35,7 +35,7 @@ class TV extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) => Description(
-                            name: tv[index]['title'] ?? tv[index]['name'],
+                            name: tv[index]['name'],
                             description: tv[index]['overview'],
                             bannerurl: 'https://image.tmdb.org/t/p/w500' +
                                 tv[index]['backdrop_path'],
@@ -47,31 +47,33 @@ class TV extends StatelessWidget {
                         ),
                       );
                     },
-                    child: Container(
-                      padding: const EdgeInsets.all(5),
-                      width: 250,
-                      child: Column(children: [
-                        Container(
-                          width: 250,
-                          height: 140,
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(10),
-                            image: DecorationImage(
-                                image: NetworkImage(
-                                  'https://image.tmdb.org/t/p/w500' +
-                                      tv[index]['backdrop_path'],
+                    child: tv[index]['backdrop_path'] != null
+                        ? Container(
+                            padding: const EdgeInsets.all(5),
+                            width: 250,
+                            child: Column(children: [
+                              Container(
+                                width: 250,
+                                height: 140,
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  image: DecorationImage(
+                                      image: NetworkImage(
+                                        'https://image.tmdb.org/t/p/w500' +
+                                            tv[index]['backdrop_path'],
+                                      ),
+                                      fit: BoxFit.cover),
                                 ),
-                                fit: BoxFit.cover),
-                          ),
-                        ),
-                        const SizedBox(height: 10),
-                        ModifiedText(
-                          color: Colors.white,
-                          size: 12,
-                          text: tv[index]['name'] ?? 'Loading',
-                        )
-                      ]),
-                    ),
+                              ),
+                              const SizedBox(height: 10),
+                              ModifiedText(
+                                color: Colors.white,
+                                size: 12,
+                                text: tv[index]['name'] ?? 'Loading',
+                              )
+                            ]),
+                          )
+                        : Container(),
                   );
                 }),
           ),

@@ -39,7 +39,7 @@ INJECTED from C:\DEV\flutter projects\movie_app\android\app\src\debug\AndroidMan
 INJECTED from C:\DEV\flutter projects\movie_app\android\app\src\debug\AndroidManifest.xml:1:1-8:12
 INJECTED from C:\DEV\flutter projects\movie_app\android\app\src\debug\AndroidManifest.xml:1:1-8:12
 	package
-		ADDED from C:\DEV\flutter projects\movie_app\android\app\src\main\AndroidManifest.xml:2:5-36
+		ADDED from C:\DEV\flutter projects\movie_app\android\app\src\main\AndroidManifest.xml:2:5-48
 		INJECTED from C:\DEV\flutter projects\movie_app\android\app\src\main\AndroidManifest.xml
 		INJECTED from C:\DEV\flutter projects\movie_app\android\app\src\debug\AndroidManifest.xml
 	android:versionName

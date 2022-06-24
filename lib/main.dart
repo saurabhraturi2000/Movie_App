@@ -5,7 +5,9 @@ import 'package:movie_app/widgets/trending.dart';
 import 'package:movie_app/widgets/tv.dart';
 import 'package:tmdb_api/tmdb_api.dart';
 
-void main() => runApp(const MyApp());
+void main() {
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -45,7 +47,12 @@ class _HomeState extends State<Home> {
 
   loadmovie() async {
     TMDB tmdbWithCustomLogs = TMDB(ApiKeys(apiKey, readaccestoken),
-        logConfig: const ConfigLogger(showErrorLogs: true));
+        logConfig: const ConfigLogger(
+            showErrorLogs: true,
+            showInfoLogs: true,
+            showLogs: true,
+            showUrlLogs: true,
+            showWarningLogs: true));
 
     Map trendingresult = await tmdbWithCustomLogs.v3.trending.getTrending();
     Map topratedresult = await tmdbWithCustomLogs.v3.movies.getTopRated();
